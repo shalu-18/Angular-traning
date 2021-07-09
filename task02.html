@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<script src="https:ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>task02</title>
+  </head>
+  <body>
+
+    <div ng-app="myangular" ng-controller= "mycontroller">
+
+<form >
+        <label>Name:</label>
+        <input  type="text" name="name" value="" placeholder="Enter your name"><br><br>
+        <label>Email:</label>
+        <input  type="text" name="email" value="" placeholder="email"><br><br>
+        <label>B-Day:</label>
+        <input id ="bday" type="date" name="bday" ><br><br>
+        <label>Mobile Number:</label>
+        <input id="number" type="text" name="mnumber" value="" placeholder="mobilenumber"><br><br>
+        <label>Password:</label>
+        <input id="psd" type="text" name="psd" value="" placeholder="Password" ><br><br>
+        <label>State:</label>
+        <select>
+         <option ng-repeat= "state in statelist">{{state}}</option>
+       </select><br><br>
+        <label>City:</label>
+        <select>
+          <option ng-repeat = "city in  Citylist">{{city}}</option><br><br>
+        </select>
+
+
+</form>
+
+<button>Submit</button>
+
+<h2>Table with 10 records</h2>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Mobile number</th>
+    <th>Password</th>
+  </tr>
+  <tr ng-repeat= "std in recordlist | filter: search|orderBy: dataorderby" >
+<td>{{std.Name}}</td>
+<td>{{std.Email}}</td>
+<td>{{std.Number}}</td>
+<td>{{std.Password}}</td>
+</tr>
+
+
+</table>
+<br><br>
+<input type="searchbox" name="searchbox" ng-model="search" placeholder="searchdata">
+<button ng-click="shortdata1('Name')">OrderbyName</button>
+<button  ng-click="shortdata1('Email')" >OrderbyEmail</button>
+
+
+</div>
+
+      <script>
+
+        var app= angular.module("myangular", []);
+        app.controller('mycontroller',function($scope){
+          $scope.statelist = ['Maharastra','rajesthan','Gujrat','utrakhand','karnatka'];
+          $scope.Citylist = ["Mumbai","Delhi","Bangalore","Hyderabad","pune","kanpoor","ahemdabad","surat","nakpoor","patna","karachi","ranchi"];
+
+          $scope.shortdata1 = function(std){
+            $scope.dataorderby = std;
+
+          }
+
+$scope.recordlist = [
+  {'Name': 'shalini', 'Email': 'aashalini@gmail.com', 'Number': 9892870036, 'Password': 'shalini7865'},
+  {'Name': 'akash', 'Email': 'akash78@gmail.com', 'Number': 8892870036, 'Password': 7865},
+  {'Name': 'shekhar', 'Email': 'shekhar65@gmail.com', 'Number': 7892870036, 'Password': 6543},
+  {'Name': 'aaushee', 'Email': 'aayushee@gmail.com', 'Number': 6892870036, 'Password': 98777},
+  {'Name': 'Arooz', 'Email': 'arooz@gmail.com', 'Number': 5892870036, 'Password': 'shiivv67'},
+  {'Name': 'nilu', 'Email': 'nilu8@gmail.com', 'Number': 7892870036, 'Password': 'hk987'},
+  {'Name': 'satyam', 'Email': 'satyam77@gmail.com', 'Number': 7892870036, 'Password': 'sh7865'},
+  {'Name': 'pooja', 'Email': 'poo@gmail.com', 'Number': 5892870036, 'Password': 'poo0098'},
+  {'Name': 'ronit', 'Email': 'ronit78@gmail.com', 'Number': 6892870036, 'Password': 'jko00987'},
+  {'Name': 'ronak', 'Email': 'ronak@gmail.com', 'Number': 4892870036, 'Password': 'kloute'},
+]
+
+});
+
+
+
+
+        </script>
+
+
+  </body>
+</html>

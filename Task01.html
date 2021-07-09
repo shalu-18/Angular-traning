@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Task-01</title>
+  </head>
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  html{
+    text-align: center;
+
+  }
+
+input{
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+
+}
+select{
+gap: 2rem;
+}
+
+.container-first{
+  text-align: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-left: 600px;
+  font-size: 1rem;
+  font-weight: bold;
+  display: grid;
+  gap: 1rem;
+
+
+
+
+}
+
+.container-second{
+  text-align: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-top: 40px;
+  height: 50px;
+display: grid;
+  gap: 0.8rem;
+
+}
+
+button{
+  margin-top: 90px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: 20px;
+
+}
+h1{
+  margin-top: 40px;
+}
+
+#displaydata{
+  margin-top: 30px;
+  margin-left: 540px;
+  text-align: center;
+  justify-content: center;
+}
+#birthday{
+  display: flex;
+}
+</style>
+  <body>
+      <center><h1>Employee Form</h1></center>
+      <hr>
+
+<div class="container">
+<div class="container-first">
+<label> First-Name: </label><br>
+<label> Last-Name: </label><br>
+<label> Email-Id:</label><br>
+<label> Address:</label><br>
+<label> Contact-Number:</label>
+<label> Location:</label>
+<label >Birthday:</label>
+
+
+</div>
+
+
+
+
+<div class="container-second">
+   <input id="fname" type="text" name="fname" >  </input><br>
+   <input  id="lname"type="text" name="lname" > </input><br>
+   <input  id="emailid" type="email" name="email-id" ></input><br>
+   <input   id="ads" type="text" name="adress"></input><br>
+   <input  id="number"type="text" name="number"> </input>
+   <select id='selectStates'>
+     <option>Choose a State</option>
+    </select>
+
+
+<form>
+
+  <input type="date" id="birthday" name="birthday">
+
+</form>
+</div>
+</div>
+<br>
+<hr>
+<div class="button">
+<button id="entry" onclick="displayDetails()">Show-Data</button>
+<button id="reset" onclick="Reset()" value="delete">Reset-Data</butoon>
+
+  </div>
+</div>
+
+  <table border="1" id="displaydata">
+    <tr>
+      <th>First-Name</th>
+      <th>Last-Name</th>
+      <th>Email-Id</th>
+      <th>Address</th>
+      <th>Contact-Number</th>
+    </tr>
+
+
+
+
+
+<script>
+
+
+var arrayOfStates = ["Maharastra", "Rajasthan","Gujrat", "Goa"];
+
+function displayDetails(){
+var row = 1;
+var fname = document.getElementById('fname').value;
+var lname=   document.getElementById('lname').value;
+var emailid =   document.getElementById('emailid').value;
+var ads = document.getElementById('ads').value;
+ var number = document.getElementById('number').value;
+
+
+ if(!fname||!lname||!emailid||!ads||!number){
+   alert("pls fill the all details!");
+   return;
+ }
+
+
+
+ if(!phonenumber(number)){
+   return;
+ }
+
+function validEmail(email){
+  var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if(!email.match(validRegex)){
+    alert("Enter valid email address");
+    return true;
+  }
+}
+if(validEmail(emailid)){
+  return;
+}
+
+
+ var displaydata = document.getElementById('displaydata');
+ var newRow = displaydata.insertRow(row);
+ var cell1 = newRow.insertCell(0);
+ var cell2 = newRow.insertCell(1);
+ var cell3 = newRow.insertCell(2);
+ var cell4 = newRow.insertCell(3);
+ var cell5 = newRow.insertCell(4);
+
+cell1.innerHTML =fname;
+cell2.innerHTML =lname;
+cell3.innerHTML =emailid;
+cell4.innerHTML =ads;
+cell5.innerHTML =number;
+
+row++;
+
+}
+
+
+function Reset() {
+ document.getElementById('fname').value= " ";
+    document.getElementById('lname').value=" ";
+   document.getElementById('emailid').value=" ";
+  document.getElementById('ads').value =" ";
+    document.getElementById('number').value=" ";
+    document.getElementById('displaydata').deleteRow(1);
+}
+
+
+
+
+function phonenumber(number)
+{
+  var phoneno = /^\d{10}$/;
+  if((number.match(phoneno)))
+  {
+      return true;
+        }
+      else
+        {
+        alert("Invalid  number try again !");
+        return false;
+        }
+}
+
+var select = document.getElementById("selectStates");
+
+
+for(var i=0; i < arrayOfStates.length; i++){
+  var opt = arrayOfStates[i];
+  var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select.appendChild(el);
+}
+
+</script>
+  </body>
+</html>
